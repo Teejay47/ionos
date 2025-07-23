@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  background-color: #f4f8fc;
+  background-color: #f4f7fa;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -14,7 +14,9 @@ header {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
   position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
 .header-left {
   display: flex;
   align-items: center;
@@ -95,29 +97,32 @@ header {
 }
 .container {
   width: 100%;
-  max-width: 600px;
+  max-width: 660px;
   background: white;
   padding: 30px;
-  border-radius: 12px;
+  border-radius: 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   margin: 32px auto;
   box-sizing: border-box;
 }
 .container h2 {
-  font-size: 18px;
+  font-size: 22px;
   color: #0a101b;
   margin-bottom: 40px;
   margin-top: 4px;
   display: flex;
   align-items: center;
-  font-weight: 600;
+  font-weight: 100; /* Medium weight */
+  font-family: 'Overpass', Arial, sans-serif;
 }
+
+
 .container h2 img {
   margin-right: 12px;
   height: 60px;
 }
 label {
-  font-size: 14px;
+  font-size: 16px;
   display: block;
   margin-bottom: 6px;
   font-weight: 600;
@@ -159,7 +164,7 @@ button {
   justify-content: center;
   gap: 8px;
   min-width: 120px;
-  height: 48px;
+  height: 38px;
   transition: all 0.3s ease;
   overflow: hidden;
 }
@@ -211,14 +216,21 @@ button:disabled {
   display: block;
   margin-bottom: 6px;
 }
-.learn-more span {
+.learn-more a {
   color: #0073e6;
+  text-decoration: none;
+}
+
+.learn-more a:hover {
+  text-decoration: underline;
 }
 .more-logins {
+  margin-top: -20px;
   margin-bottom: 60px;
+
 }
 .more-logins-inner {
-  max-width: 600px;
+  max-width: 660px;
   margin: 0 auto;
 }
 .more-logins-inner h3 {
@@ -232,7 +244,10 @@ button:disabled {
   gap: 30px;
 }
 .login-option {
-  width: 180px;
+  width: 200px;
+  height: 130px;
+  text-decoration: none;
+
   background: white;
   padding: 30px;
   border-radius: 12px;
@@ -240,15 +255,22 @@ button:disabled {
   text-align: center;
   box-sizing: border-box;
 }
+
+.login-option:hover {
+  background-color: #dbedf8;
+  cursor: pointer;
+}
 .login-option img {
   height: 60px;
   margin-bottom: 12px;
+  margin-top: -15px;
+
 }
 .login-option span {
   display: block;
-  color: #003087;
+  color: #0b5bb1;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
 }
 footer.custom-footer {
   display: flex;
@@ -375,7 +397,7 @@ footer.custom-footer {
     font-size: 14px;
     padding: 14px 12px;
     margin-bottom: 30px;
-    height: 52px;
+    height: 42px;
   }
   
   .learn-more {
@@ -453,11 +475,11 @@ footer.custom-footer {
 /* Smaller mobile devices */
 @media (max-width: 480px) {
   header {
-    padding: 12px 15px;
+    padding: 16px 25px;
   }
   
   .header-left img {
-    height: 22px;
+    height: 25px;
   }
   
   .chat-icon svg {
@@ -495,17 +517,23 @@ footer.custom-footer {
 }
 
   
-  input[type="email"] {
-    padding: 14px 12px;
-  }
+input[type="email"] {
+  padding: 8px 12px;
+}
+
+
+
   
   button {
-    height: 50px;
+    height: 38px;
     font-size: 14px;
   }
   
   .more-logins {
     padding: 0 10px;
+    margin-top: 5px;
+    width: auto;
+
   }
   
   .more-logins-inner {
@@ -513,28 +541,56 @@ footer.custom-footer {
   }
   
   .more-logins-inner h3 {
-    font-size: 14px;
+    margin-top: -2px;
+    font-size: 16px;
   }
   
   .login-options {
+    margin-top: -15px;
     gap: 12px;
   }
   
   .login-option {
-    padding: 20px 15px;
+    padding: 10px 15px;
     aspect-ratio: 1.3/1;
   }
   
   .login-option img {
-    height: 50px;
+    height: 65px;
   }
   
   .login-option span {
-    font-size: 13px;
+    font-size: 16px;
+  }
+  footer.custom-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 12px;  /* Tight side padding */
+    font-size: 14px;     /* Increased font size */
+    background-color: #ffffff;
+    color: #333;
+    gap: 4px;            /* Reduced vertical spacing */
   }
   
-  footer.custom-footer {
-    padding: 20px 15px;
-    font-size: 11px;
+  footer.custom-footer a {
+    color: #002c5f;             /* Black links by default */
+    text-decoration: none;
+    font-size: 14px;         /* Match font size with text */
+  }
+  
+  footer.custom-footer a:hover {
+    color: #0073e6;          /* Blue on hover */
+    text-decoration: underline;
+  }
+  
+  .status-dot {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background-color: #28a745;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
   }
 }
